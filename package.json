@@ -1,0 +1,31 @@
+{
+  "name": "miner",
+  "version": "1.0.0",
+  "description": "mine data and sync with datastores wuch as hubspot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gruberjl/miner.git"
+  },
+  "keywords": [
+    "data-miner"
+  ],
+  "author": "John Gruber <gruberjl@gmail.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gruberjl/miner/issues"
+  },
+  "homepage": "https://github.com/gruberjl/miner#readme",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "debug": "^2.6.8",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "request-promise": "^4.2.1"
+  }
+}
