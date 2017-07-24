@@ -41,6 +41,13 @@ describe("company:class", () => {
       })
     })
 
+    describe('hubspotProperties', () => {
+      test('should return properties in array', () => {
+        const company = new Company({properties:{name:'test company:company:class'}})
+        expect(company.hubspotProperties).toEqual([{name:'name', value:'test company:company:class'}])
+      })
+    })
+
 
     describe("isNew", () => {
       test('should return false if we have a companyId', () => {

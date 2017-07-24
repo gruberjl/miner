@@ -24,15 +24,17 @@ class Company {
     return !Boolean(this.data.companyId)
   }
 
-  async create() {
-    const properties = Object.keys(this.data.properties).map((key) => {
+  get hubspotProperties() {
+    return Object.keys(this.data.properties).map((key) => {
       return {name:key, value:this.data.properties[key]}
     })
+  }
 
+  async create() {
     let results
 
     try {
-      results = await create(properties)
+      results = await create(this.hubspotProperties)
     } catch(e) {
       return e
     }
