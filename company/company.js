@@ -2,7 +2,10 @@ const {find, query} = require('./read.js')
 
 class Company {
   constructor(data) {
-    this.data = data
+    if (data)
+      this.data = data
+    else
+      this.data = {}
   }
 
   static async find(companyId) {
@@ -14,6 +17,10 @@ class Company {
     const raw = await query(properties, limit)
     const companies = raw.map((data) => new Company(data))
     return companies
+  }
+
+  isNew() {
+    return !Boolean(this.data.companyId)
   }
 }
 

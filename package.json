@@ -26,6 +26,7 @@
     "jest": "^20.0.4"
   },
   "dependencies": {
+    "nodemailer": "^4.0.1",
     "request-promise": "^4.2.1"
   }
 }
