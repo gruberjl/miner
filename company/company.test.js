@@ -1,7 +1,7 @@
 const Company = require('./company.js')
 
 describe("company:class", () => {
-  xdescribe('hubspot', () => {
+  describe('hubspot', () => {
     test('find', async () => {
       const company = await Company.find(499751277)
       expect(company).toBeInstanceOf(Company)
@@ -24,6 +24,22 @@ describe("company:class", () => {
       const company = new Company({properties:{title:'test company:company:class'}})
       const results = await company.create()
       expect(results.statusCode).toEqual(400)
+    })
+
+    describe('update', () => {
+      let company
+
+      beforeAll(async () => {
+        company = new Company({properties:{name:'test company:company:class'}})
+        await company.create()
+      })
+
+      test('should update', async () => {
+        company.name = 'test company:company:class updated'
+        const results = await company.update()
+        expect(typeof results.companyId).toEqual('number')
+        expect(results.properties.name.value).toEqual('test company:company:class updated')
+      })
     })
   })
 

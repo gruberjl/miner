@@ -47,12 +47,25 @@ class Company {
     return results
   }
 
+  async update() {
+    let results
+
+    try {
+      results = await update(this.data.companyId, this.hubspotProperties)
+    } catch(e) {
+      return e
+    }
+    
+    this.data = results
+    return results
+  }
+
   setField(key, value) {
     this.data.properties[key] = value
   }
 
-  set title(value) {
-    this.field('title', value)
+  set name(value) {
+    this.setField('name', value)
   }
 
 
