@@ -46,6 +46,16 @@ describe("company:class", () => {
         const company = new Company({properties:{name:'test company:company:class'}})
         expect(company.hubspotProperties).toEqual([{name:'name', value:'test company:company:class'}])
       })
+
+      test('should remove hs_lastmodifieddate', () => {
+        const company = new Company({properties:{name:'test company:company:class', hs_lastmodifieddate:'adsf'}})
+        expect(company.hubspotProperties).toEqual([{name:'name', value:'test company:company:class'}])
+      })
+
+      test('should remove createdate', () => {
+        const company = new Company({properties:{name:'test company:company:class', createdate:'adsf'}})
+        expect(company.hubspotProperties).toEqual([{name:'name', value:'test company:company:class'}])
+      })
     })
 
 

@@ -25,9 +25,13 @@ class Company {
   }
 
   get hubspotProperties() {
-    return Object.keys(this.data.properties).map((key) => {
-      return {name:key, value:this.data.properties[key]}
-    })
+    return Object.keys(this.data.properties).reduce((arr, key) => {
+      if (key === 'hs_lastmodifieddate' || key === 'createdate' )
+        return arr
+
+      arr.push({name:key, value:this.data.properties[key]})
+      return arr
+    }, [])
   }
 
   async create() {
