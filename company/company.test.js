@@ -12,6 +12,19 @@ describe("company:class", () => {
       expect(companies.length).toEqual(1)
       expect(companies[0]).toBeInstanceOf(Company)
     })
+
+    test('create', async () => {
+      const company = new Company({properties:{name:'test company:company:class'}})
+      const results = await company.create()
+      expect(typeof results.companyId).toEqual('number')
+      expect(results.properties.name.value).toEqual('test company:company:class')
+    })
+
+    test('create failure', async () => {
+      const company = new Company({properties:{title:'test company:company:class'}})
+      const results = await company.create()
+      expect(results.statusCode).toEqual(400)
+    })
   })
 
   describe("non-hubspot", () => {

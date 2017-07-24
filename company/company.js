@@ -1,4 +1,5 @@
 const {find, query} = require('./read.js')
+const {create, update} = require('./write.js')
 
 class Company {
   constructor(data) {
@@ -21,6 +22,23 @@ class Company {
 
   isNew() {
     return !Boolean(this.data.companyId)
+  }
+
+  async create() {
+    const properties = Object.keys(this.data.properties).map((key) => {
+      return {name:key, value:this.data.properties[key]}
+    })
+
+    let results
+
+    try {
+      results = await create(properties)
+    } catch(e) {
+      return e
+    }
+
+    this.data = results
+    return results
   }
 }
 
