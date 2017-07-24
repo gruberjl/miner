@@ -35,9 +35,9 @@ describe("company:class", () => {
         expect(company.data).toEqual({a:1})
       })
 
-      test('should set data to {}', () => {
+      test('should set data to {properties:{}}', () => {
         const company = new Company()
-        expect(company.data).toEqual({})
+        expect(company.data).toEqual({properties:{}})
       })
     })
 
@@ -58,6 +58,14 @@ describe("company:class", () => {
       test('should return true if we dont have a companyId', () => {
         const company = new Company()
         expect(company.isNew()).toEqual(true)
+      })
+    })
+
+    describe('setField', () => {
+      test('should set value in data', () => {
+        const company = new Company()
+        company.setField('name', 'Company Title')
+        expect(company.data.properties).toEqual({name:'Company Title'})
       })
     })
 

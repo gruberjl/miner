@@ -6,7 +6,7 @@ class Company {
     if (data)
       this.data = data
     else
-      this.data = {}
+      this.data = {properties:{}}
   }
 
   static async find(companyId) {
@@ -42,6 +42,16 @@ class Company {
     this.data = results
     return results
   }
+
+  setField(key, value) {
+    this.data.properties[key] = value
+  }
+
+  set title(value) {
+    this.field('title', value)
+  }
+
+
 }
 
 module.exports = Company
