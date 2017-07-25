@@ -1,6 +1,6 @@
 const {find, query} = require('./read.js')
 
-describe('contact-read', () => {
+xdescribe('contact-read', () => {
   describe('query', () => {
     let contacts
 
