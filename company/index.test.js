@@ -34,14 +34,14 @@ describe("company-index", () => {
     beforeAll(async () => {
       company = await Company.create({
         properties: {
-          name: {value:'Test Company:index'},
+          name: {value:'Test Company:index-CreateUpdate'},
           description: {value:'This is a test company for company:write. Please delete if seen.'}
         }
       })
     })
 
     afterAll(async () => {
-      await Company.destroy(company.companyId)
+      let results = await Company.destroy(company)
     })
 
     describe('create', () => {
@@ -69,10 +69,15 @@ describe("company-index", () => {
     beforeAll(async () => {
       company = await Company.create({
         properties: {
-          name: {value: 'Test Company:index'},
+          name: {value: 'Test Company:index-destroy'},
           description: {value:'This is a test company for company:write. Please delete if seen.'}
         }
       })
+    })
+
+    afterAll(async () => {
+      if (!company.isDeleted)
+        await Company.destroy(company)
     })
 
     test('should delete', async () => {
