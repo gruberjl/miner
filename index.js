@@ -1,14 +1,19 @@
 const Company = require('./company')
-//const linkedin = require('./linkedin')
 
-const mineCompany = async (companyId) => {
-  const company = await Company.find(companyId)
-
-  Object.keys(company.properties).forEach((key) => {
-    console.log(key)
-    console.log(company.properties[key])
-    console.log('')
-  })
+let company = {
+  properties: {
+    name: {value: 'test company'},
+    description: {value: 'this is my test company'},
+    website: {value: 'gitbit.org'}
+  }
 }
 
-mineCompany(483315943)
+const worker = async () => {
+  let c = await Company.create(company)
+  c.properties.country = {value: 'USA'}
+  c = await Company.update(c)
+  c = await Company.destroy(c)
+  console.log(c)
+}
+
+worker()
