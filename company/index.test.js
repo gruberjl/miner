@@ -34,8 +34,8 @@ describe("company-index", () => {
     beforeAll(async () => {
       company = await Company.create({
         properties: {
-          name: 'Test Company:index',
-          description: 'This is a test company for company:write. Please delete if seen.'
+          name: {value:'Test Company:index'},
+          description: {value:'This is a test company for company:write. Please delete if seen.'}
         }
       })
     })
@@ -69,8 +69,8 @@ describe("company-index", () => {
     beforeAll(async () => {
       company = await Company.create({
         properties: {
-          name: 'Test Company:index',
-          description: 'This is a test company for company:write. Please delete if seen.'
+          name: {value: 'Test Company:index'},
+          description: {value:'This is a test company for company:write. Please delete if seen.'}
         }
       })
     })
