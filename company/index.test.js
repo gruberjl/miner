@@ -27,7 +27,7 @@ describe("company-index", () => {
     })
   })
 
-  describe('hubspot', () => {
+  xdescribe('CreateUpdate', () => {
     let company
 
     beforeAll(async () => {
@@ -62,7 +62,7 @@ describe("company-index", () => {
     })
   })
 
-  describe('destroy', () => {
+  xdescribe('destroy', () => {
     let company
 
     beforeAll(async () => {
