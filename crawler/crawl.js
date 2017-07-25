@@ -1,5 +1,6 @@
 const Crawler = require("simplecrawler")
 const cheerio = require('cheerio')
+const normalizeUrl = require('normalize-url')
 
 const newCrawler = (url, maxDepth=10, decodeResponses=false) => {
   const crawler = Crawler(url)
@@ -52,14 +53,5 @@ module.exports.getEmailAddresses = (url, maxDepth = 10) => {
   if (!url)
     return Promise.reject(newResponse(url, [], 400, 'bad url'))
 
-  if (typeof url === 'string') {
-    return getEmailAddresses(url, maxDepth)
-  } else {
-    const company = url
-    return getEmailAddresses(company.website, maxDepth).then((results) => {
-      company.crawledEmails = results.emailAddresses
-      return company
-    })
-  }
-
+  return getEmailAddresses(normalizeUrl(url), maxDepth)
 }
