@@ -13,16 +13,17 @@ describe("company-index", () => {
 
   describe('hubspotProperties', () => {
     test('should return properties in array', () => {
-      expect(Company.hubspotProperties({properties:{name:'test company:company:class'}})).toEqual([{name:'name', value:'test company:company:class'}])
-    })
-
-    test('should remove hs_lastmodifieddate', () => {
-      const company = {properties:{name:'test company:company:class', hs_lastmodifieddate:'adsf'}}
+      const company = { properties: {
+        name: { value: 'test company:company:class' }
+      }}
       expect(Company.hubspotProperties(company)).toEqual([{name:'name', value:'test company:company:class'}])
     })
 
-    test('should remove createdate', () => {
-      const company = {properties:{name:'test company:company:class', createdate:'adsf'}}
+    test('should skip CALCULATED', () => {
+      const company = { properties: {
+        name: { value: 'test company:company:class' },
+        created: { value: '1', source:'CALCULATED' },
+      }}
       expect(Company.hubspotProperties(company)).toEqual([{name:'name', value:'test company:company:class'}])
     })
   })

@@ -6,10 +6,10 @@ const isNew = (company) => !Boolean(company.companyId)
 
 const hubspotProperties = (company) =>
   Object.keys(company.properties).reduce((arr, key) => {
-    if (key === 'hs_lastmodifieddate' || key === 'createdate' )
+    if (company.properties[key].source && company.properties[key].source === 'CALCULATED' )
       return arr
 
-    arr.push({name:key, value:company.properties[key]})
+    arr.push({name:key, value:company.properties[key].value})
     return arr
   }, [])
 
