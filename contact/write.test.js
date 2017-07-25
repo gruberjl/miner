@@ -1,5 +1,5 @@
 const {create, update} = require('./write.js')
-// const {destroy} = require('./destroy.js')
+const {destroy} = require('./destroy.js')
 
 describe('contact:write', () => {
   let createResults
@@ -13,9 +13,9 @@ describe('contact:write', () => {
     createResults = await create(properties)
   })
 
-  // afterAll(async () => {
-  //   await destroy(createResults.companyId)
-  // })
+  afterAll(async () => {
+    await destroy(createResults.vid)
+  })
 
   describe('create', () => {
     test('should have vid', async () => {
