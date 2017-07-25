@@ -1,6 +1,7 @@
 const write = require('./write.js')
 const {find, query} = require('./read.js')
 const destroyer = require('./destroy.js')
+const mine = require('./mine.js')
 
 const isNew = (company) => !Boolean(company.companyId)
 
@@ -44,4 +45,4 @@ const destroy = async (company) => {
   return company
 }
 
-module.exports = {isNew, hubspotProperties, create, update, destroy, find, query}
+module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, mine}
