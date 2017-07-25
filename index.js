@@ -1,19 +1,21 @@
 const Company = require('./company')
+const linkedin = require('./linkedin')
 
-let company = {
-  properties: {
-    name: {value: 'test company'},
-    description: {value: 'this is my test company'},
-    website: {value: 'gitbit.org'}
+const ShawFishmanId = 483315943
+
+const mineCompany = async (company) => {
+  if (company.properties.linkedin_company_page && company.properties.linkedin_company_page.value) {
+    const profile = await linkedin.getCompany(company.properties.linkedin_company_page.value)
+    console.log(profile)
   }
 }
 
-const worker = async () => {
-  let c = await Company.create(company)
-  c.properties.country = {value: 'USA'}
-  c = await Company.update(c)
-  c = await Company.destroy(c)
-  console.log(c)
+const worker = async (companyId) => {
+  await linkedin.login()
+  let c = await Company.find(companyId)
+  c = await mineCompany(c)
+
+  await linkedin.quit()
 }
 
-worker()
+worker(ShawFishmanId)

@@ -1,7 +1,7 @@
 var webdriver = require('selenium-webdriver')
 var driver = new webdriver.Builder().forBrowser('chrome').build();
 const {By, until, Key} = webdriver
-const env = require('./env.js')
+const env = require('../env.js')
 
 exports.login = async () => {
   driver.get('https://www.linkedin.com');
