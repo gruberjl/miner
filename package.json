@@ -26,7 +26,8 @@
     "jest": "^20.0.4"
   },
   "dependencies": {
-    "nodemailer": "^4.0.1",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "selenium-webdriver": "^3.5.0",
+    "simplecrawler": "^1.1.4"
   }
 }
