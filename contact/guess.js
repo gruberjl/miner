@@ -1,10 +1,6 @@
 const debug = require('debug')('guess')
 
-module.exports.guess = (domain, name, domainFormula = "") => {
-  const firstName = name.first
-  const middleName = name.middle
-  const lastName = name.last
-
+module.exports.guess = (domain, firstName, middleName, lastName) => {
   let g = []
 
   if (firstName) {
@@ -39,14 +35,6 @@ module.exports.guess = (domain, name, domainFormula = "") => {
     g.push({value: `${firstName}.${middleName.charAt(0)}.${lastName}@${domain}`, formula:"firstmlast"})
     g.push({value: `${firstName}${middleName}${lastName}@${domain}`, formula:"firstmiddlelast"})
     g.push({value: `${firstName}.${middleName}.${lastName}@${domain}`, formula:"first.middle.last"})
-  }
-
-  if (domainFormula != "") {
-    g.sort((a, b) => {
-      if (a.formula == domainFormula) return -1
-      if (b.formula == domainFormula) return 1
-      return 0
-    })
   }
 
   return g
