@@ -52,6 +52,10 @@ module.exports.guess = (domain, name, domainFormula = "") => {
   return g
 }
 
+const match = (guesses, emails) => guesses.find((guess) => emails.includes(guess.value.toLowerCase()))
+
+module.exports.match = match
+
 const find = (employee, companyFormula) => {
   const results = employee.email_guesses.find((guess) => guess.formula == companyFormula)
   if (results && results.value)

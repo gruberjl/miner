@@ -1,4 +1,4 @@
-const {guess, find, findEach} = require('./guess.js')
+const {guess, match, find, findEach} = require('./guess.js')
 
 const employees = () => [
   { name:
@@ -113,7 +113,19 @@ describe("guess", () => {
         {"formula": "first.middle.last", "value": "john.lambert.gruber@gitbit.org"}
       ])
     })
-  }),
+  })
+
+  describe('match', () => {
+    test('should return guess', () => {
+      const results = match([{"formula": "first", "value": "john@gitbit.org"}], ['john@gitbit.org'])
+      expect(results).toEqual({"formula": "first", "value": "john@gitbit.org"})
+    })
+
+    test('should not be case sensitive', () => {
+      const results = match([{"formula": "first", "value": "John@gitbit.org"}], ['john@gitbit.org'])
+      expect(results).toEqual({"formula": "first", "value": "John@gitbit.org"})
+    })
+  })
 
   describe('find', () => {
     test('should assign email', () => {
