@@ -36,6 +36,18 @@ describe('Contact:Index', () => {
     })
   })
 
+  describe('parseName', () => {
+    test('should set name fields', () => {
+      let contact = Contact.parseName({ properties:{}}, 'mr. John "sexy" L. Gruber, jr.')
+      expect(contact.properties.name_prefix.value).toEqual('mr.')
+      expect(contact.properties.firstname.value).toEqual('John')
+      expect(contact.properties.name_middle.value).toEqual('L.')
+      expect(contact.properties.lastname.value).toEqual('Gruber')
+      expect(contact.properties.name_suffix.value).toEqual('jr.')
+      expect(contact.properties.name_original.value).toEqual('mr. John "sexy" L. Gruber, jr.')
+    })
+  })
+
   describe('crud', () => {
     let contact
 

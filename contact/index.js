@@ -1,6 +1,7 @@
 const write = require('./write.js')
 const {find, query} = require('./read.js')
 const destroyer = require('./destroy.js')
+const nameParser = require('another-name-parser')
 
 const isNew = (contact) => !Boolean(contact.vid)
 
@@ -47,4 +48,15 @@ const destroy = async (contact) => {
   return contact
 }
 
-module.exports = {isNew, hubspotProperties, create, update, destroy, find, query}
+const parseName = (contact, originalName) => {
+  const name = nameParser(originalName)
+  contact.properties.name_prefix = {value: name.prefix}
+  contact.properties.firstname = {value: name.first}
+  contact.properties.name_middle = {value: name.middle}
+  contact.properties.lastname = {value: name.last}
+  contact.properties.name_suffix = {value: name.suffix}
+  contact.properties.name_original = {value: name.original}
+  return contact
+}
+
+module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, parseName}
