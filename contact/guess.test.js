@@ -1,4 +1,4 @@
-const {guess, match} = require('./guess.js')
+const {guess, match, findByFormula} = require('./guess.js')
 
 describe("guess", () => {
   describe('guess', () => {
@@ -59,6 +59,14 @@ describe("guess", () => {
     test('should not be case sensitive', () => {
       const results = match([{"formula": "first", "value": "John@gitbit.org"}], ['john@gitbit.org'])
       expect(results).toEqual({"formula": "first", "value": "John@gitbit.org"})
+    })
+  })
+
+  describe('findByFormula', () => {
+    test('should return guess', () => {
+      const guesses = [{"formula": "first", "value": "john@gitbit.org"}, {"formula": "last", "value": "gruber@gitbit.org"}]
+      const results = findByFormula(guesses, 'first')
+      expect(results).toEqual({"formula": "first", "value": "john@gitbit.org"})
     })
   })
 })

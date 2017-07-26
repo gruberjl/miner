@@ -1,6 +1,4 @@
-const debug = require('debug')('guess')
-
-module.exports.guess = (domain, firstName, middleName, lastName) => {
+const guess = (domain, firstName, middleName, lastName) => {
   let g = []
 
   if (firstName) {
@@ -42,26 +40,6 @@ module.exports.guess = (domain, firstName, middleName, lastName) => {
 
 const match = (guesses, emails) => guesses.find((guess) => emails.includes(guess.value.toLowerCase()))
 
-module.exports.match = match
+const findByFormula = (guesses, formula) => guesses.find((guess) => guess.formula === formula)
 
-const find = (employee, companyFormula) => {
-  const results = employee.email_guesses.find((guess) => guess.formula == companyFormula)
-  if (results && results.value)
-    employee.email = employee.email_guesses.find((guess) => guess.formula == companyFormula).value
-  return employee
-}
-
-module.exports.find = find
-
-module.exports.findEach = (company) => {
-  debug(`findEach starting. email_forumula:${company.email_forumula}`)
-  company.employees.forEach((employee) => {
-    if (!employee.email) {
-      debug(`Finding: ${employee.name.original}`)
-      find(employee, company.email_forumula)
-      debug(`     Found: ${employee.email}`)
-    }
-  })
-
-  return company
-}
+module.exports = {guess, match, findByFormula}
