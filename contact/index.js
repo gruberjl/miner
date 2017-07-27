@@ -2,6 +2,7 @@ const write = require('./write.js')
 const {find, query} = require('./read.js')
 const destroyer = require('./destroy.js')
 const nameParser = require('another-name-parser')
+const Guess = require('./guess.js')
 
 const isNew = (contact) => !Boolean(contact.vid)
 
@@ -59,4 +60,15 @@ const parseName = (contact, originalName) => {
   return contact
 }
 
-module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, parseName}
+const guessEmails = (contact, domain) => {
+  const firstName =   contact.properties.firstname    ? contact.properties.firstname.value    : null
+  const middleName =  contact.properties.name_middle  ? contact.properties.name_middle.value  : null
+  const lastName =    contact.properties.lastname     ? contact.properties.lastname.value     : null
+  contact.properties.email_guesses = {
+    value: Guess.guess(domain, firstName, middleName, lastName),
+    source: 'CALCULATED'
+  }
+  return contact
+}
+
+module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, parseName, guessEmails}

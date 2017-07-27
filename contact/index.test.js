@@ -48,7 +48,15 @@ describe('Contact:Index', () => {
     })
   })
 
-  describe('crud', () => {
+  describe('guessEmails', () => {
+    test('should set guess', () => {
+      const results = Contact.guessEmails({properties:{firstname:{value:'john'}}}, 'gitbit.org')
+      expect(results.properties.email_guesses.value).toEqual([{formula:'first', value:'john@gitbit.org'}])
+      expect(results.properties.email_guesses.source).toEqual('CALCULATED')
+    })
+  })
+
+  xdescribe('crud', () => {
     let contact
 
     beforeAll(async () => {
