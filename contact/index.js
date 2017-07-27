@@ -81,4 +81,14 @@ const matchEmails = (contact, emails) => {
   return contact
 }
 
-module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, parseName, guessEmails, matchEmails}
+const findEmailByFormula = (contact, formula) => {
+  const guess = Guess.findByFormula(contact.properties.email_guesses.value, formula)
+  if (guess) {
+    contact.properties.email = {value: guess.value}
+    contact.properties.email_formula = {value: guess.formula}
+  }
+
+  return contact
+}
+
+module.exports = {isNew, hubspotProperties, create, update, destroy, find, query, parseName, guessEmails, matchEmails, findEmailByFormula}
