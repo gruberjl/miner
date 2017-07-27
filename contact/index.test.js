@@ -56,6 +56,15 @@ describe('Contact:Index', () => {
     })
   })
 
+  describe('matchEmails', () => {
+    test('should set email', () => {
+      let contact = Contact.guessEmails({properties:{firstname:{value:'john'}}}, 'gitbit.org')
+      contact = Contact.matchEmails(contact, ['john@gitbit.org'])
+      expect(contact.properties.email.value).toEqual('john@gitbit.org')
+      expect(contact.properties.email_formula.value).toEqual('first')
+    })
+  })
+
   xdescribe('crud', () => {
     let contact
 
