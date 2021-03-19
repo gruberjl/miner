@@ -1,2 +1,2 @@
 # miner
-mine data and sync with datastores wuch as hubspot
+mine data and sync with datastores such as hubspot
